@@ -20,4 +20,15 @@ while(True):
 
 
         cv2.imshow('Threshed', frame_threshed)
+        image, contours, hierarchy = cv2.findContours(frame_threshed, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        count = -1
+        for cont in contours:
+            count = count + 1
+            epsilon = 0.1*cv2.arcLength(cont, True)
+            approx = cv2.approxPolyDP(cont, epsilon, True)
+            D = W*F/P
+            if cv2.contourArea(approx) > 5000 and len(approx) == 4: 
+
+                cv2.drawContours(image, contours, count, (255,255,255), 10)
 
