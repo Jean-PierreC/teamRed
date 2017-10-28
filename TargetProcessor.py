@@ -6,36 +6,31 @@ from Target import Target
 
 class TargetProcessor:
     def _init_():
-        None = None
         RectHeight = 500
         RectWidth = 200
-        RectcentX = None
-        RectcentY = None
-        focalLen = 480
-        minX = 0
-        minY = 0
-        maxX = 3333333
-        maxY = 3333333
-        imgWidth = 10
-        imgHeight = 22
+        focalLen = 486
         horizCent = 200
         vertiCent = 333
-        offsetX = abs(RectcentX - horizCent)
-        offsetY = abs(RectcentY - vertiCent) 
-    def loadTarget():
-
+    def loadTarget(target):
+        imgWidth = target.getWidth()
+        imgHeight = target.getHeight()
+        imgCenter = target.getCenter()
+        RectcentX = imgCenter[0]
+        RectcentY = imgCenter[1]
+        offsetX = math.fabs(RectcentX - horizCent)
+        offsetY = math.fabs(RectcentY - vertiCent)
 
     def findDistance():
         if imgWidth != None:
             dist = RectWidth * focalLen / imgWidth
-            print (dist)
+            return (dist)
 
     def findAzimuth():
         if imgWidth != None:
             azimuth = np.arctan(offsetX/ focalLen)*180/math.pi
-            print (azimuth)
+            return (azimuth)
 
     def findAltitude():
         if imgWdith != None:
             altit = np.arctan(offsetY/ focalLen)*180/math.pi
-            print (altit)
+            return (altit)

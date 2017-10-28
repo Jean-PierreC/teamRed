@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 class TargetDectector:
-    def TargetDetect():
+    def TargetDetect(img):
         count = -1
         img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
