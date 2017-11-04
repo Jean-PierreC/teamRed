@@ -20,3 +20,5 @@ class TargetDectector:
                 cv2.drawContours(image, contours, count,(255,255,255), 10)
                 return approx
 
+
+

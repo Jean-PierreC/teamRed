@@ -1,8 +1,9 @@
 import cv2
 import numpy as np
-class TargetDectector:
-    def TargetDetect(img):
         count = -1
+
+Video_capture = cv2.VideoCapture(0)
+
         img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
         THRESHOLD_MIN = np.array([70, 0, 0],np.uint8)
@@ -18,5 +19,5 @@ class TargetDectector:
 
             if cv2.contourArea(approx) > 5000 and len(approx) == 4:
                 cv2.drawContours(image, contours, count,(255,255,255), 10)
-                return approx
+                imshow("sls",image)
 
