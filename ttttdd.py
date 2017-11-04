@@ -1,24 +1,40 @@
-import cv2
 import numpy as np
-class TargetDectector:
-    def TargetDetect(img):
-        count = -1
-        img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+import math
+import cv2
 
-        THRESHOLD_MIN = np.array([70, 0, 0],np.uint8)
-        THRESHOLD_MAX = np.array([110, 255,255],np.uint8)
+from Target import Target
 
-        frame = cv2.inRange(img_hsv, THRESHOLD_MIN,THRESHOLD_MAX)
-        image, contours, count, = cv2.findContours(frame, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+class TargetProcessor:
+    def _init_():
+        RectHeight = 500
+        RectWidth = 200
+        focalLen = 486
+        horizCent = 200
+        vertiCent = 333
+    def loadTarget(target):
+        imgWidth = target.getWidth()
+        imgHeight = target.getHeight()
+        imgCenter = target.getCenter()
+        RectcentX = imgCenter[0]
+        RectcentY = imgCenter[1]
+        offsetX = math.fabs(RectcentX - horizCent)
+        offsetY = math.fabs(RectcentY - vertiCent)
 
+    def findDistance():
+        if imgWidth != None:
+            dist = RectWidth * focalLen / imgWidth
+            return (dist)
 
-        for cont in contours:
-            count = count +1
-            approx = cv2.approxPolyDp(cont, epsilon, True)
+    def findAzimuth():
+        if imgWidth != None:
+            azimuth = np.arctan(offsetX/ focalLen)*180/math.pi
+            return (azimuth)
 
-            if cv2.contourArea(approx) > 5000 and len(approx) == 4:
-                cv2.drawContours(image, contours, count,(255,255,255), 10)
-                return approx
+    def findAltitude():
+        if imgWdith != None:
+            altit = np.arctan(offsetY/ focalLen)*180/math.pi
+            return (altit)
+
 
 
 
